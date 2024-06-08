@@ -15,7 +15,7 @@ This is a simple project to demonstrate my frontend skills.
 - [x] Display book details
 - [x] Responsive design
 
-![My Image](public/assets/ello-books.png)
+![My Image](/frontend/public/assets/ello-books.png)
 
 
 ## How to use
