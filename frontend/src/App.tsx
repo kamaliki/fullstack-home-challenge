@@ -37,7 +37,7 @@ const App = () => {
   return (
     <Container>
       <SearchBar setBooks={handleSearch} />
-      <ReadingList readingList={readingList} removeFromReadingList={removeFromReadingList} />
+      <ReadingList books={readingList} onRemoveFromReadingList={removeFromReadingList} />
       {isSearching ? (
         <Grid container spacing={2}>
           {filteredBooks.map((book, index) => (

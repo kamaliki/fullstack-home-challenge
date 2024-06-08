@@ -64,15 +64,26 @@ const BookList = ({ setBooks, onAddToReadingList, readingList }: BookListProps) 
       <Grid container spacing={2}>
         {displayedBooks.map((book, index) => (
           <Grid item xs={12} sm={6} md={4} lg={2} key={index}>
-            <BookCard book={book} onAddToReadingList={onAddToReadingList} isInReadingList={readingList.some(b => b.title === book.title)} />
+            <BookCard
+              book={book}
+              onAddToReadingList={onAddToReadingList}
+              isInReadingList={readingList.some((b) => b.title === book.title)}
+            />
           </Grid>
         ))}
       </Grid>
-      {displayedBooks.length < books.length && (
-        <Button variant="contained" color="primary" onClick={handleLoadMore}>
-          Load More
-        </Button>
-      )}
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        {displayedBooks.length < books.length && (
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{ margin: 2, padding: 2 }}
+            onClick={handleLoadMore}
+          >
+            Load More
+          </Button>
+        )}
+      </div>
     </Container>
   );
 };
