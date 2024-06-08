@@ -1,13 +1,15 @@
-// import AddIcon from '@mui/icons-material/Add';
-
 import { useState, useEffect } from 'react';
 import { gql, useQuery } from '@apollo/client';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import BookCard from './BookCard';
-import Skeleton from '@mui/material/Skeleton';
+import { Book } from '../types/types';
 
+/**
+ * GraphQL query to fetch all books.
+ * @returns {QueryResult} The result of the query.
+ */
 const ALL_BOOKS_QUERY = gql`
   query AllBooksQuery {
     books {
@@ -19,12 +21,6 @@ const ALL_BOOKS_QUERY = gql`
   }
 `;
 
-interface Book {
-  title: string;
-  author: string;
-  coverPhotoURL: string;
-  readingLevel: string;
-}
 
 interface BookListProps {
   setBooks: (books: Book[]) => void;
@@ -32,6 +28,13 @@ interface BookListProps {
   readingList: Book[];
 }
 
+/**
+ * Component that displays a list of books.
+ * @param {Book[]} setBooks - Function to set the list of books.
+ * @param {Function} onAddToReadingList - Function to add a book to the reading list.
+ * @param {Book[]} readingList - List of books in the reading list.
+ * @returns {JSX.Element} The BookList component.
+ */
 const BookList = ({ setBooks, onAddToReadingList, readingList }: BookListProps) => {
   const [books, setBooksState] = useState<Book[]>([]);
   const [displayedBooks, setDisplayedBooks] = useState<Book[]>([]);
@@ -90,55 +93,3 @@ const BookList = ({ setBooks, onAddToReadingList, readingList }: BookListProps) 
 
 export default BookList;
 
-
-// import List from '@mui/material/List';
-// import ListItem from '@mui/material/ListItem';
-// import ListItemText from '@mui/material/ListItemText';
-// import IconButton from '@mui/material/IconButton';
-// import Box from '@mui/material/Box';
-// import Typography from '@mui/material/Typography';
-
-
-// interface Book {
-//   title: string;
-//   author: string;
-//   coverPhotoURL: string;
-//   readingLevel: string;
-// }
-
-// interface BookListProps {
-//   books: Book[];
-//   onAddToReadingList: (book: Book) => void;
-// }
-
-// const BookList = ({ books, onAddToReadingList }: BookListProps) => {
-//   return (
-//     <div>
-//       <Typography variant="h4">Search Results</Typography>
-//       {books.length > 0 ? (
-//         <List>
-//           {books.map((book, index) => (
-//             <ListItem key={index} sx={{ position: 'relative' }}>
-//               <Box sx={{ marginRight: 2 }}>
-//                 <img src={book.coverPhotoURL} alt={book.title} style={{ width: 100, height: 100 }} />
-//               </Box>
-//               <ListItemText
-//                 primary={book.title}
-//                 secondary={`Author: ${book.author} - Reading Level: ${book.readingLevel}`}
-//               />
-//               <Box sx={{ position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)' }}>
-//                 <IconButton edge="end" onClick={() => onAddToReadingList(book)}>
-//                   <AddIcon />
-//                 </IconButton>
-//               </Box>
-//             </ListItem>
-//           ))}
-//         </List>
-//       ) : (
-//         <Typography variant="body1">No books found. Please try searching for something else.</Typography>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default BookList;

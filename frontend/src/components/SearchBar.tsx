@@ -5,6 +5,10 @@ import { useLazyQuery, gql } from "@apollo/client";
 import LinearProgress from '@mui/material/LinearProgress';
 import { Book } from "../types/types"
 
+/**
+ * GraphQL query to fetch books by title.
+ * @returns {QueryResult} The result of the query.
+ */
 const BOOKS_BY_TITLE_QUERY = gql`
   query BooksByTitleQuery($title: String!) {
     booksByTitle(title: $title) {
@@ -21,6 +25,11 @@ interface SearchBarProps {
   setBooks: (books: Book[]) => void;
 }
 
+/**
+ * Component that displays a search bar to search for books by title.
+ * @param {Function} setBooks - Function to set the list of books.
+ * @returns {JSX.Element} The SearchBar component.
+ */
 const SearchBar = ({ setBooks }: SearchBarProps) => {
   const [query, setQuery] = useState("");
 

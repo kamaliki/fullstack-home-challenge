@@ -5,13 +5,7 @@ import SearchBar from './components/SearchBar';
 import BookList from './components/BookList';
 import ReadingList from './components/ReadingList';
 import BookCard from './components/BookCard';
-
-interface Book {
-  title: string;
-  author: string;
-  coverPhotoURL: string;
-  readingLevel: string;
-}
+import { Book } from './types/types';
 
 const App = () => {
   const [books, setBooks] = useState<Book[]>([]);

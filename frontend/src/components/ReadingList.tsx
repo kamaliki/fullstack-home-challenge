@@ -12,6 +12,10 @@ interface ReadingListProps {
   onRemoveFromReadingList: (book: Book) => void;
 }
 
+/*
+  It renders a list of books with their cover photo, title, author, and reading level.
+  Each book item also has a delete button to remove it from the reading list.
+*/
 const ReadingList = ({ books, onRemoveFromReadingList }: ReadingListProps) => {
   return (
     <div>

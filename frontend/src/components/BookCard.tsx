@@ -10,12 +10,20 @@ import Skeleton from '@mui/material/Skeleton';
 import AddIcon from '@mui/icons-material/Add'
 import { Book } from "../types/types";
 
+
 interface BookCardProps {
   book: Book;
   onAddToReadingList: (book: Book) => void;
   isInReadingList: boolean;
 }
 
+/**
+ * Component that displays a book card with a modal to show more details.
+ * @param {Book} book - The book to display.
+ * @param {Function} onAddToReadingList - Function to add the book to the reading list.
+ * @param {boolean} isInReadingList - Flag to indicate if the book is in the reading list.
+ * @returns {JSX.Element} The BookCard component.
+ */
 const BookCard = ({ book, onAddToReadingList, isInReadingList }: BookCardProps) => {
   const [modalOpen, setModalOpen] = useState(false);
 
