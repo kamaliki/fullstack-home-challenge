@@ -8,5 +8,8 @@ export const typeDefs = `#graphql
 
   type Query {
     books: [Book]
+    booksByTitle(title: String!): [Book]
   }
+
+
 `;

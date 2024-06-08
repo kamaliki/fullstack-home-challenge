@@ -1,8 +1,4 @@
-/**
- * Set up Apollo Client
- * Link to the GraphQL API
- */
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 /**
  * Create a new Apollo Client
