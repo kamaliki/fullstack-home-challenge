@@ -1,14 +1,11 @@
 import { useState } from "react";
-import TextField from "@mui/material/TextField";
+import InputBase from '@mui/material/InputBase';
+import SearchIcon from '@mui/icons-material/Search';
 import Box from "@mui/material/Box";
 import { useLazyQuery, gql } from "@apollo/client";
 import LinearProgress from '@mui/material/LinearProgress';
-import { Book } from "../types/types"
+import { Book } from "../types/types";
 
-/**
- * GraphQL query to fetch books by title.
- * @returns {QueryResult} The result of the query.
- */
 const BOOKS_BY_TITLE_QUERY = gql`
   query BooksByTitleQuery($title: String!) {
     booksByTitle(title: $title) {
@@ -20,20 +17,14 @@ const BOOKS_BY_TITLE_QUERY = gql`
   }
 `;
 
-
 interface SearchBarProps {
   setBooks: (books: Book[]) => void;
 }
 
-/**
- * Component that displays a search bar to search for books by title.
- * @param {Function} setBooks - Function to set the list of books.
- * @returns {JSX.Element} The SearchBar component.
- */
 const SearchBar = ({ setBooks }: SearchBarProps) => {
   const [query, setQuery] = useState("");
 
-  const [searchBooks, { data, loading, error }] = useLazyQuery(
+  const [searchBooks, { loading, error }] = useLazyQuery(
     BOOKS_BY_TITLE_QUERY,
     {
       variables: { title: query },
@@ -54,20 +45,28 @@ const SearchBar = ({ setBooks }: SearchBarProps) => {
   return (
     <Box
       sx={{
-        "& > :not(style)": { m: 1, width: "25ch" },
+        display: "flex",
+        alignItems: "center",
+        borderRadius: "20px",
+        backgroundColor: "#ffffff", // Background color of the search bar
+        padding: "5px",
+        border: "2px solid #28B8B8", // Border color
+        "&:focus-within": {
+          borderColor: "primary", // Border color on focus
+        },
+        justifyContent: "center",
+        m:4,
       }}
-      display="flex"
-      justifyContent="center"
     >
-      <TextField
-        variant="outlined"
-        label="Search by Title"
+      <SearchIcon />
+      <InputBase
+        placeholder="Search books by title"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === "Enter") handleSearch();
         }}
-        
+        sx={{ ml: 1 }}
       />
       {loading && <LinearProgress color="secondary" />}
       {error && <p>Error fetching books: {error.message}</p>}

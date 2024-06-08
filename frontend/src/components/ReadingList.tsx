@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import DeleteIcon from "@mui/icons-material/Delete";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -6,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Book } from "../types/types";
+import { Container, Modal, Button } from "@mui/material";
 
 interface ReadingListProps {
   books: Book[];
@@ -17,8 +19,29 @@ interface ReadingListProps {
   Each book item also has a delete button to remove it from the reading list.
 */
 const ReadingList = ({ books, onRemoveFromReadingList }: ReadingListProps) => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [bookToRemove, setBookToRemove] = useState<Book | null>(null);
+
+  const handleRemoveBook = () => {
+    if (bookToRemove) {
+      onRemoveFromReadingList(bookToRemove);
+      setModalOpen(false);
+      setBookToRemove(null);
+    }
+  };
+
+  const handleOpenModal = (book: Book) => {
+    setBookToRemove(book);
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setBookToRemove(null);
+  };
+
   return (
-    <div>
+    <Container>
       <Typography variant="h4">Reading List</Typography>
       <List>
         {books.map((book, index) => (
@@ -44,7 +67,7 @@ const ReadingList = ({ books, onRemoveFromReadingList }: ReadingListProps) => {
             >
               <IconButton
                 edge="end"
-                onClick={() => onRemoveFromReadingList(book)}
+                onClick={() => handleOpenModal(book)}
               >
                 <DeleteIcon />
               </IconButton>
@@ -52,7 +75,33 @@ const ReadingList = ({ books, onRemoveFromReadingList }: ReadingListProps) => {
           </ListItem>
         ))}
       </List>
-    </div>
+      <Modal open={modalOpen} onClose={handleCloseModal}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 400,
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            p: 4,
+            textAlign: "center",
+            borderRadius: 8,
+          }}
+        >
+          <Typography variant="h6" component="h2" gutterBottom>
+            Are you sure you want to remove this book from the reading list?
+          </Typography>
+          <Button onClick={handleCloseModal} sx={{ marginRight: 2 }}>
+            Cancel
+          </Button>
+          <Button onClick={handleRemoveBook} color="error">
+            Remove
+          </Button>
+        </Box>
+      </Modal>
+    </Container>
   );
 };
 
