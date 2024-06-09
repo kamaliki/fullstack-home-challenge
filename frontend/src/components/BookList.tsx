@@ -80,7 +80,7 @@ const BookList = ({ setBooks, onAddToReadingList, readingList }: BookListProps) 
           <Button
             variant="contained"
             color="primary"
-            sx={{ margin: 2, padding: 2 }}
+            sx={{ margin: 2, padding: 2, borderRadius: 8}}
             onClick={handleLoadMore}
           >
             Load More

@@ -81,7 +81,7 @@ const BookCard = ({ book, onAddToReadingList, isInReadingList }: BookCardProps) 
             {book.title}
           </Typography>
           <Typography variant="subtitle1" component="div" sx={{ mt: 2 }}>
-            {book.author}
+            By: {book.author}
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
             Reading Level: {book.readingLevel}
