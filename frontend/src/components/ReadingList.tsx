@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -65,9 +65,10 @@ const ReadingList = ({ books, onRemoveFromReadingList }: ReadingListProps) => {
                 transform: "translateY(-50%)",
               }}
             >
-              <IconButton
-                edge="end"
+              <IconButton 
+                edge="end" 
                 onClick={() => handleOpenModal(book)}
+                aria-label={`delete-icon-${book.title}`}
               >
                 <DeleteIcon />
               </IconButton>

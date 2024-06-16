@@ -6,7 +6,7 @@ import { useLazyQuery, gql } from "@apollo/client";
 import LinearProgress from '@mui/material/LinearProgress';
 import { Book } from "../types/types";
 
-const BOOKS_BY_TITLE_QUERY = gql`
+export const BOOKS_BY_TITLE_QUERY = gql`
   query BooksByTitleQuery($title: String!) {
     booksByTitle(title: $title) {
       author

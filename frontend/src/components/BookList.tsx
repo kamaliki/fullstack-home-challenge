@@ -10,7 +10,7 @@ import { Book } from '../types/types';
  * GraphQL query to fetch all books.
  * @returns {QueryResult} The result of the query.
  */
-const ALL_BOOKS_QUERY = gql`
+export const ALL_BOOKS_QUERY = gql`
   query AllBooksQuery {
     books {
       author
