@@ -1,5 +1,3 @@
-// App.test.tsx
-
 import { render, screen } from '@testing-library/react';
 import { MockedProvider, MockedResponse } from '@apollo/client/testing';
 import App from '../App';
