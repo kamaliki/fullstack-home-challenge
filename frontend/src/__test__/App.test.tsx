@@ -4,7 +4,6 @@ import { render, screen } from '@testing-library/react';
 import { MockedProvider, MockedResponse } from '@apollo/client/testing';
 import App from '../App';
 import { ALL_BOOKS_QUERY } from '../components/BookList';
-import { Book } from '../types/types';
 
 const mocks: MockedResponse[] = [
   {
@@ -20,7 +19,6 @@ const mocks: MockedResponse[] = [
             coverPhotoURL: "url1",
             readingLevel: "Level 1",
           },
-          // Add more books as needed for testing different scenarios
         ],
       },
     },
