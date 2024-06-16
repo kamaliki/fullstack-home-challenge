@@ -23,6 +23,7 @@ This is a simple project to demonstrate my frontend skills.
 Install it and run:
 
 ```bash
-npm install
-npm run dev
+npm install # install dependencies
+npm run dev # run the development server
+npm test # run tests
 ```
